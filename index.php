@@ -3,11 +3,11 @@
   <head>
     <title>Video Player</title>
     <meta charset="UTF-8" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/libs/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/libs/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/libs/favicon-16x16.png">
-	<link rel="manifest" href="/libs/site.webmanifest">    
-    <link rel="stylesheet" href="/libs/98.css" />
+	<link rel="apple-touch-icon" sizes="180x180" href="lib/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="lib/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="lib/favicon-16x16.png">
+	<link rel="manifest" href="lib/site.webmanifest">    
+    <link rel="stylesheet" href="lib/98.css" />
     <style>	
 	/* buat column */	
 	.colm_a { float: left; width: 65%; }
