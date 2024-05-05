@@ -3,11 +3,7 @@
   <head>
     <title>Video Player</title>
     <meta charset="UTF-8" />
-	<link rel="apple-touch-icon" sizes="180x180" href="lib/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="lib/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="lib/favicon-16x16.png">
-	<link rel="manifest" href="lib/site.webmanifest">    
-    <link rel="stylesheet" href="lib/98.css" />
+    <link rel="stylesheet" href="assets/css/XP0.css" />
     <style>	
 	/* buat column */	
 	.colm_a { float: left; width: 65%; }
@@ -33,7 +29,7 @@
 	.search { padding:8px; background-color:lightblue; width:96%;}
 	/* Ajax playlist file */
 	#playlist { display:table; }
-	#playlist li{ cursor:pointer; padding:2px; }
+	#playlist li{ cursor:pointer; padding:1px; }
 	#playlist li:hover{ color:blue; }
 	/* Video playlist ajax */	
 	#videoarea {
@@ -44,7 +40,7 @@
 	}			
     </style>
 
-	<script src="/libs/jquery-3.5.1.js"></script>
+	<script src="assets/js/jquery-3.5.1.js"></script>
 	<script>
 	$(function() {
     	$("#playlist li").on("click", function() {
@@ -64,7 +60,9 @@
     		$("#playlist li").filter(function() {
       			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     		});
-  		});    
+  		}); 
+
+
 	})
 	</script>
     
@@ -83,38 +81,35 @@
   <div class="row">
 
   <div class="colm_a">
-  <fieldset><video id="videoarea" controls="controls" poster="" src=""></video>
-  <center>Test aja</center>
-  </fieldset>
+  <fieldset><video id="videoarea" controls="controls" poster="" src=""></video></fieldset>
   </div>
   
   <div class="colm_b">
   
 	<?php
-	$pth = isset($_REQUEST["dirs"])? ($_REQUEST["dirs"]): "jpop" ;
+	$pth = isset($_REQUEST["dirs"])? ($_REQUEST["dirs"]): "Asian" ;
 	$url = "/~ants/media/videos/";
 	$dsl = "/home/ants/public_html/media/videos/";
 	$dir = $dsl."/".$pth;
 	
-	echo '<form action=""><select name="dirs" width="80%">';
+	echo '<form action="" ><select name="dirs" width="80%"  onchange="this.form.submit()">';
 	$sl = opendir($dsl);
 	while (($dirsel = readdir($sl))!== false){
-		if(is_dir($dirsel)=== true){
-			if($dirsel === $pth) {echo '<option value="'.$dirsel.'" selected>'.$dirsel.'</option>';}
-			else{
-				if ($dirsel!==".." && $dirsel!==".") {
-					echo '<option value="'.$dirsel.'">'.$dirsel.'</option>';
-				}
-			} 
-		}
+		if(is_dir($dirsel)!== true){ if($dirsel === $pth) {echo '<option value="'.$dirsel.'" selected>'.$dirsel.'</option>';}else{echo '<option value="'.$dirsel.'">'.$dirsel.'</option>';} }
 	}
 	echo '
-	</select>&nbsp;<input type="submit" name="submit">&nbsp;or back to <a href=".."><b>HOME</b></a>&nbsp;</form>
+	</select>&nbsp;<noscript><input type="submit" name="submit"></noscript>&nbsp;or back to</a>&nbsp;';
+?>
+      <button type="reset" onclick="location.href='.'">Home</button>
+<?php
+	echo '
+	</form><br>
 	<input type="text" class="search" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"><br>
 	
 	<div id="rightcolumn">
-	<div style="height:100%; border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
-	<ul id="playlist">	
+	<div style="height:100%; font:12px/16px Georgia, Garamond, Serif;overflow:auto;">
+	<ul id="playlist">
+	
 	';    
 	
 	$dh  = opendir($dir);
